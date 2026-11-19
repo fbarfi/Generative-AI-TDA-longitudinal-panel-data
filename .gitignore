@@ -1,0 +1,39 @@
+# Raw inputs: restored by data/fetch_data.py (too large for GitHub)
+**/Data/Data_original/*
+
+# Generated data and results (directory skeleton kept via .gitkeep)
+**/project_data/Data/Data_prepared/**/*
+**/project_data/Data/Homology/**/*
+**/project_data/Results/**/*
+!**/project_data/**/
+!**/.gitkeep
+
+# Run artifacts written by the stage drivers and run_all.sh
+**/scripts_master/logs/
+**/scripts_master/done_flags/
+**/scripts_master/execution_results_csv/
+logs/
+logs.zip
+paper_figures_and_tables_extracted_from_results_folder/
+
+# Data zips built by data/make_data_release.py (attached to the release, not tracked)
+dist/
+
+# Docker image exports
+**/docker_images/*.tar
+docker/docker_building_scripts/logs/
+docker/docker_building_scripts/docker_images/
+
+# Model checkpoints and logs
+*.ckpt
+*.pth
+lightning_logs/
+
+# Python, Jupyter, OS
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.jupyter/
+.DS_Store
+._*
+.Rhistory

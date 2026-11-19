@@ -1,0 +1,21 @@
+# ----------------------------
+# ----------------------------
+# Dockerfilegudhi (no requirements.txt)
+# ----------------------------
+
+FROM gudhi/latest_gudhi_version
+
+# Set working directory
+WORKDIR /app
+
+# Install Python dependencies directly
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install matplotlib numpy pandas plotly scipy seaborn scikit-fda scikit-learn xarray psutil
+
+# Copy your code
+COPY scripts_master /app/scripts_master/
+COPY project_data /app/project_data/
+COPY project_codes /app/project_codes/
+
+# Default command
+CMD ["python3"]

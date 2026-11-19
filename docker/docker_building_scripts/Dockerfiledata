@@ -1,0 +1,54 @@
+# syntax=docker/dockerfile:1.4
+
+ARG PYTHON_VERSION=3.11
+FROM python:${PYTHON_VERSION}-slim
+
+# System Dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    ninja-build \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libopenblas-dev \
+    libeigen3-dev \
+    libomp-dev \
+    libboost-dev \
+    graphviz \
+    libgraphviz-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# BLAS/LAPACK (optional tweak for OpenBLAS use)
+ENV BLAS=/usr/lib/aarch64-linux-gnu/libopenblas.so
+ENV LAPACK=/usr/lib/aarch64-linux-gnu/libopenblas.so
+
+# Set working directory
+WORKDIR /opt
+
+# Python ML/DS libraries
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install \
+    matplotlib \
+    matplotlib-venn \
+    numpy \
+    pandas \
+    scipy \
+    seaborn \
+    scikit-learn \
+    tqdm \
+    xarray \
+    pydantic \
+    psutil
+
+# Set working directory for app
+WORKDIR /app
+
+# Copy application files
+COPY scripts_master /app/scripts_master/
+COPY project_data /app/project_data/
+COPY project_codes /app/project_codes/
+
+# Default entrypoint
+CMD ["python3"]

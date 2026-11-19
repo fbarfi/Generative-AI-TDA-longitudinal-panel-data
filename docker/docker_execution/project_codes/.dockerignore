@@ -1,0 +1,18 @@
+# Ignore everything in scripts_master
+scripts_master/*
+
+# Allow only these:
+!scripts_master/scripts/
+!scripts_master/requirements_folder/
+
+# Ignore junk
+__pycache__/
+*.pyc
+*.pyo
+*.tar
+*.log
+*.DS_Store
+*.ipynb_checkpoints
+.git/
+docker_images/
+
